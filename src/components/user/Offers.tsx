@@ -1,4 +1,4 @@
-import exclusive_image from "../assets/Frontend_Assets/exclusive_image.png";
+import exclusive_image from "../../assets/Frontend_Assets/exclusive_image.png";
 
 const Offers = () => {
   return (

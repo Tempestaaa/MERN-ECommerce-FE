@@ -1,4 +1,4 @@
-import new_collections from "../assets/Frontend_Assets/new_collections";
+import new_collections from "../../assets/Frontend_Assets/new_collections";
 import Product from "./Product";
 
 const NewCollections = () => {

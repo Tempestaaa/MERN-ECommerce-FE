@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
-import Product from "../../components/Product";
+import Product from "../../components/user/Product";
 import { ChevronDown } from "lucide-react";
 
 type Props = {

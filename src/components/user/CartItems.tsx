@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { ShopContext } from "../context/ShopContext";
+import { ShopContext } from "../../context/ShopContext";
 import { X } from "lucide-react";
-import Input from "./commons/Input";
+import Input from "../commons/Input";
 
 const CartItems = () => {
   const shopContext = useContext(ShopContext);
@@ -27,7 +27,7 @@ const CartItems = () => {
                 <tr key={item._id} className="hover text-center">
                   <th>
                     <div className="w-20 aspect-square">
-                      <img src={item.image} alt="Product Image" />
+                      <img src={item.image as string} alt="Product Image" />
                     </div>
                   </th>
                   <td>{item.name}</td>

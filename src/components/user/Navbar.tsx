@@ -1,7 +1,7 @@
 import { Menu, ShoppingCart } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { ShopContext } from "../context/ShopContext";
+import { ShopContext } from "../../context/ShopContext";
 
 const navLinks = [
   {

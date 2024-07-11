@@ -7,10 +7,14 @@ export const ProductData = z.object({
   // category: z
   //   .union([z.enum(["men", "women", "kids"]), z.null()])
   //   .refine((data) => data !== null, { message: "Required" }),
-  category: z.string(),
-  image: z.any().refine((data) => data.length !== 0, {
-    message: "Please provide an image",
-  }),
+  category: z.string().min(1, { message: "Required" }),
+  image: z
+    .instanceof(FileList)
+    .refine((data) => data.length !== 0, {
+      message: "Please provide an image",
+    })
+    .refine((data) => data.length < 6, { message: "Maximum 5 images" })
+    .or(z.string()),
   newPrice: z.coerce.number().positive(),
   oldPrice: z.coerce.number().positive(),
   date: z.coerce.date().readonly(),
@@ -27,7 +31,6 @@ export const ProductDataAdd = ProductData.omit({
   updatedAt: true,
   date: true,
   available: true,
-  oldPrice: true,
 });
 export type ProductAdd = z.infer<typeof ProductDataAdd>;
 

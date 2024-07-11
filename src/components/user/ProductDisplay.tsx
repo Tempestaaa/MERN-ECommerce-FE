@@ -1,7 +1,7 @@
 import { ShoppingCart, Star } from "lucide-react";
-import { ProductFE } from "../types/product.type";
+import { ProductFE } from "../../types/product.type";
 import { useContext } from "react";
-import { ShopContext } from "../context/ShopContext";
+import { ShopContext } from "../../context/ShopContext";
 
 type Props = {
   product: ProductFE | undefined;
@@ -18,29 +18,29 @@ function ProductDisplay({ product }: Props) {
       <div className="flex gap-4">
         <div className="flex flex-col gap-4">
           <img
-            src={product?.image}
+            src={product?.image as string}
             alt="Image"
             className="h-36 max-h-36 aspect-square"
           />
           <img
-            src={product?.image}
+            src={product?.image as string}
             alt="Image"
             className="h-36 max-h-36 aspect-square"
           />
           <img
-            src={product?.image}
+            src={product?.image as string}
             alt="Image"
             className="h-36 max-h-36 aspect-square"
           />
           <img
-            src={product?.image}
+            src={product?.image as string}
             alt="Image"
             className="h-36 max-h-36 aspect-square"
           />
         </div>
         <div className="">
           <img
-            src={product?.image}
+            src={product?.image as string}
             alt="Image"
             className="w-[500px] h-[624px]"
           />

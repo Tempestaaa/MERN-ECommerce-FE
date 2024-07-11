@@ -1,4 +1,4 @@
-import Input from "./commons/Input";
+import Input from "../commons/Input";
 
 const NewLetter = () => {
   return (

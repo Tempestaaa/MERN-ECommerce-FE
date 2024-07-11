@@ -17,8 +17,6 @@ import kids_banner from "./assets/Frontend_Assets/banner_kids.png";
 import ProductDetails from "./pages/public/ProductDetails";
 
 const App = () => {
-  console.log();
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -39,15 +37,14 @@ const App = () => {
         <Route path="register" element={<Register />} />
         <Route path="cart" element={<Cart />} />
         <Route path="product/:productId" element={<ProductDetails />} />
-
-        <Route path="dashboard" element={<DashboardLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="add-product" element={<AddProduct />} />
-          <Route path="products" element={<ProductList />} />
-        </Route>
-
-        <Route path="*" element={<Missing />} />
       </Route>
+
+      <Route path="dashboard" element={<DashboardLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="add-product" element={<AddProduct />} />
+        <Route path="products" element={<ProductList />} />
+      </Route>
+      <Route path="*" element={<Missing />} />
     </Routes>
   );
 };

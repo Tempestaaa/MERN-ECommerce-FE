@@ -1,8 +1,8 @@
-import Hero from "../../components/Hero";
-import NewCollections from "../../components/NewCollections";
-import NewLetter from "../../components/NewLetter";
-import Offers from "../../components/Offers";
-import Popular from "../../components/Popular";
+import Hero from "../../components/user/Hero";
+import NewCollections from "../../components/user/NewCollections";
+import NewLetter from "../../components/user/NewLetter";
+import Offers from "../../components/user/Offers";
+import Popular from "../../components/user/Popular";
 
 const Home = () => {
   return (

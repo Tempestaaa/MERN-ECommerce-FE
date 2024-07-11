@@ -1,4 +1,4 @@
-import data_product from "../assets/Frontend_Assets/data";
+import data_product from "../../assets/Frontend_Assets/data";
 import Product from "./Product";
 
 const Popular = () => {
