@@ -4,7 +4,7 @@ class Http {
   instance: AxiosInstance;
   constructor() {
     this.instance = axios.create({
-      baseURL: "http://localhost:3000",
+      baseURL: import.meta.env.VITE_BACKEND_URL,
       withCredentials: true,
       timeout: 10 * 1000,
       headers: { "Content-Type": "application/json" },
