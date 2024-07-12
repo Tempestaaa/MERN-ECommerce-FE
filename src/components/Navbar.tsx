@@ -1,7 +1,8 @@
 import { Menu, ShoppingCart } from "lucide-react";
-import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { ShopContext } from "../../context/ShopContext";
+import useSticky from "../hooks/useSticky";
+import { useQuery } from "@tanstack/react-query";
+import { User } from "../types/user.type";
 
 const navLinks = [
   {
@@ -23,22 +24,8 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const [isSticky, setIsSticky] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const shopContext = useContext(ShopContext);
+  const isSticky = useSticky();
+  const { data } = useQuery<User>({ queryKey: ["authUser"] });
 
   return (
     <nav
@@ -81,16 +68,22 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end flex items-center gap-2">
-          <Link to="/login">
-            <button className="btn btn-outline">Login</button>
-          </Link>
+          {data?.username ? (
+            <div>
+              <button className="btn btn-outline">Logout</button>
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="btn btn-outline">Login</button>
+            </Link>
+          )}
           <Link
             to="/cart"
             className="grid place-items-center btn btn-ghost relative"
           >
             <ShoppingCart />
             <div className="absolute top-1 right-1 bg-error p-1 w-5 aspect-square rounded-full text-[10px] grid place-items-center">
-              {shopContext?.totalCartItems()}
+              0
             </div>
           </Link>
         </div>

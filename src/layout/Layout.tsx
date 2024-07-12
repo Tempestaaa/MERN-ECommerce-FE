@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/user/Navbar";
-import Footer from "../components/user/Footer";
+import Footer from "../components/Footer";
 import { Toaster } from "react-hot-toast";
+import Navbar from "../components/Navbar";
 
 const Layout = () => {
   return (

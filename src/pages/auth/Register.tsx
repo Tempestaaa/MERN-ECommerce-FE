@@ -1,19 +1,37 @@
 import { useForm } from "react-hook-form";
 import usePasswordToggle from "../../hooks/usePasswordToggle";
 import Input from "../../components/commons/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserDataRegister, UserRegister } from "../../types/user.type";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { registerUser } from "../../apis/auth.api";
+import toast from "react-hot-toast";
+import Loading from "../../components/commons/Loading";
 
 const Register = () => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [PasswordType, PasswordIcon] = usePasswordToggle();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<UserRegister>({ resolver: zodResolver(UserDataRegister) });
+  const { mutateAsync: registerUserApi, isPending } = useMutation({
+    mutationFn: (formData: UserRegister) => registerUser(formData),
+    onSuccess: async () => {
+      toast.success("Login success!");
+      await queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      navigate("/");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
   const onSubmit = async (data: UserRegister) => {
-    console.log(data);
+    await registerUserApi(data);
   };
   return (
     <div className="w-full grid place-items-center bg-gradient-to-b from-pink-200 px-2 h-[calc(100svh-68px)]">
@@ -62,7 +80,7 @@ const Register = () => {
             className="pr-10"
             autoComplete="new-password"
             {...register("confirm")}
-            error={errors.password}
+            error={errors.confirm}
           />
           <span
             className={`absolute right-2 ${
@@ -73,8 +91,11 @@ const Register = () => {
           </span>
         </div>
 
-        <button className="btn btn-neutral mt-4 uppercase hover:font-bold duration-300">
-          Register
+        <button
+          disabled={isPending}
+          className="btn btn-neutral mt-4 uppercase hover:font-bold duration-300"
+        >
+          {isPending ? <Loading /> : "Register"}
         </button>
         <span className="text-xs ml-auto mt-2">
           Have an account?{" "}
