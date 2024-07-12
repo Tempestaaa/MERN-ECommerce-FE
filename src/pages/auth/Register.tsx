@@ -23,28 +23,19 @@ const Register = () => {
       >
         <h1 className="text-4xl font-bold text-center">Register</h1>
         <Input
-          label="Email"
+          label="Username"
           placeholder="abc@gmail.com"
-          autoComplete="email"
-          {...register("email")}
-          error={errors.email}
+          autoComplete="username"
+          {...register("username")}
+          error={errors.username}
         />
-        <div className="flex flex-col md:flex-row md:gap-4">
-          <Input
-            label="First name"
-            placeholder="E.g. Will"
-            autoComplete="given-name"
-            {...register("firstName")}
-            error={errors.firstName}
-          />
-          <Input
-            label="Last name"
-            placeholder="E.g. Smith"
-            autoComplete="family-name"
-            {...register("lastName")}
-            error={errors.lastName}
-          />
-        </div>
+        <Input
+          label="Full name"
+          placeholder="E.g. Will"
+          autoComplete="name"
+          {...register("fullName")}
+          error={errors.fullName}
+        />
         <div className="relative">
           <Input
             type={PasswordType as string}

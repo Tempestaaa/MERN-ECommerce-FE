@@ -10,13 +10,20 @@ import AddProduct from "./pages/admin/AddProduct";
 import ProductList from "./pages/admin/ProductList";
 import Missing from "./pages/public/Missing";
 import ShopCategory from "./pages/public/ShopCategory";
-
 import men_banner from "./assets/Frontend_Assets/banner_mens.png";
 import women_banner from "./assets/Frontend_Assets/banner_women.png";
 import kids_banner from "./assets/Frontend_Assets/banner_kids.png";
 import ProductDetails from "./pages/public/ProductDetails";
+import { useQuery } from "@tanstack/react-query";
+import { authUser } from "./apis/auth.api";
 
 const App = () => {
+  useQuery({
+    queryKey: ["authUser"],
+    queryFn: () => authUser(),
+    retry: false,
+  });
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

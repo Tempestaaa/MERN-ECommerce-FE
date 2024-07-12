@@ -1,19 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/commons/Input";
 import usePasswordToggle from "../../hooks/usePasswordToggle";
 import { useForm } from "react-hook-form";
 import { UserDataLogin, UserLogin } from "../../types/user.type";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { loginUser } from "../../apis/auth.api";
+import toast from "react-hot-toast";
+import Loading from "../../components/commons/Loading";
 
 const Login = () => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [PasswordType, PasswordIcon] = usePasswordToggle();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<UserLogin>({ resolver: zodResolver(UserDataLogin) });
+  const { mutateAsync: loginUserApi, isPending } = useMutation({
+    mutationFn: (formData: UserLogin) => loginUser(formData),
+    onSuccess: async (data: any) => {
+      toast.success("Login success!");
+      localStorage.setItem("access_token", data.access_token);
+      await queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      navigate("/");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
   const onSubmit = async (data: UserLogin) => {
-    console.log(data);
+    await loginUserApi(data);
   };
 
   return (
@@ -24,11 +43,11 @@ const Login = () => {
       >
         <h1 className="text-4xl font-bold text-center">Login</h1>
         <Input
-          label="Email"
+          label="Username"
           placeholder="abc@gmail.com"
-          autoComplete="email"
-          {...register("email")}
-          error={errors.email}
+          autoComplete="username"
+          {...register("username")}
+          error={errors.username}
         />
         <div className="relative">
           <Input
@@ -48,8 +67,11 @@ const Login = () => {
             {PasswordIcon}
           </span>
         </div>
-        <button className="btn btn-neutral mt-4 uppercase hover:font-bold duration-300">
-          Login
+        <button
+          disabled={isPending}
+          className="btn btn-neutral mt-4 uppercase hover:font-bold duration-300"
+        >
+          {isPending ? <Loading /> : "Login"}
         </button>
         <span className="text-xs ml-auto mt-2">
           New user?{" "}
