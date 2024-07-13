@@ -1,24 +1,24 @@
 import { Outlet } from "react-router-dom";
-import { Blocks, Plus } from "lucide-react";
 import Sidebar from "../components/commons/Sidebar";
 import { SidebarType } from "../types/sidebar.type";
+import { Key, User } from "lucide-react";
 
 const tabs: SidebarType[] = [
   {
-    name: "Add Product",
-    link: "add-product",
-    icon: Plus,
+    name: "Profile",
+    link: "/profile",
+    icon: User,
   },
   {
-    name: "Product List",
-    link: "products",
-    icon: Blocks,
+    name: "Change password",
+    link: "change-password",
+    icon: Key,
   },
 ];
 
-const DashboardLayout = () => {
+const ProfileLayout = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-6 flex-1 container mx-auto mt-1">
+    <div className="flex flex-col md:flex-row gap-6 flex-1 container mx-auto">
       <Sidebar tabs={tabs} />
       <div className="flex-1">
         <Outlet />
@@ -27,4 +27,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default ProfileLayout;

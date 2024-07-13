@@ -1,8 +1,10 @@
-import { Menu, ShoppingCart } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
-import useSticky from "../hooks/useSticky";
+import useSticky from "../../hooks/useSticky";
 import { useQuery } from "@tanstack/react-query";
-import { User } from "../types/user.type";
+import { User } from "../../types/user.type";
+import LogoutButton from "./LogoutButton";
+import CartButton from "./CartButton";
 
 const navLinks = [
   {
@@ -69,23 +71,37 @@ const Navbar = () => {
 
         <div className="navbar-end flex items-center gap-2">
           {data?.username ? (
-            <div>
-              <button className="btn btn-outline">Logout</button>
+            <div className="flex items-center gap-2">
+              <LogoutButton />
+              <div className="dropdown dropdown-end dropdown-bottom">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="avatar grid place-items-center"
+                >
+                  <div className="w-12 rounded-full">
+                    <img src={data.avatar} alt="User Avatar" />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-md"
+                >
+                  <li>
+                    <NavLink to="/dashboard">Dashboard</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/profile">Profile</NavLink>
+                  </li>
+                </ul>
+              </div>
             </div>
           ) : (
-            <Link to="/login">
-              <button className="btn btn-outline">Login</button>
+            <Link to="/login" className="btn btn-outline">
+              Login
             </Link>
           )}
-          <Link
-            to="/cart"
-            className="grid place-items-center btn btn-ghost relative"
-          >
-            <ShoppingCart />
-            <div className="absolute top-1 right-1 bg-error p-1 w-5 aspect-square rounded-full text-[10px] grid place-items-center">
-              0
-            </div>
-          </Link>
+          <CartButton />
         </div>
       </div>
     </nav>

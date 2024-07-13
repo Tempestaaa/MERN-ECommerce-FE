@@ -17,16 +17,18 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<UserRegister>({ resolver: zodResolver(UserDataRegister) });
   const { mutateAsync: registerUserApi, isPending } = useMutation({
     mutationFn: (formData: UserRegister) => registerUser(formData),
     onSuccess: async () => {
-      toast.success("Login success!");
+      toast.success("Registration success!");
       await queryClient.invalidateQueries({ queryKey: ["authUser"] });
-      navigate("/");
+      navigate("/login");
     },
     onError: (error) => {
       toast.error(error.message);
+      reset();
     },
   });
 
@@ -42,14 +44,14 @@ const Register = () => {
         <h1 className="text-4xl font-bold text-center">Register</h1>
         <Input
           label="Username"
-          placeholder="abc@gmail.com"
+          placeholder="E.g. willsmith"
           autoComplete="username"
           {...register("username")}
           error={errors.username}
         />
         <Input
           label="Full name"
-          placeholder="E.g. Will"
+          placeholder="E.g. Will Smith"
           autoComplete="name"
           {...register("fullName")}
           error={errors.fullName}

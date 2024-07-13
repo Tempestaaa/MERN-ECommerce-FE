@@ -17,6 +17,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<UserLogin>({ resolver: zodResolver(UserDataLogin) });
   const { mutateAsync: loginUserApi, isPending } = useMutation({
     mutationFn: (formData: UserLogin) => loginUser(formData),
@@ -28,6 +29,7 @@ const Login = () => {
     },
     onError: (error) => {
       toast.error(error.message);
+      reset();
     },
   });
 

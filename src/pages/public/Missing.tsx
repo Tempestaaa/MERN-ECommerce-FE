@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Missing = () => {
   return (
-    <div className="w-full grid place-items-center">
+    <div className="w-full grid place-items-center h-svh">
       <div className="flex flex-col items-center gap-4">
         <h1 className="text-4xl font-semibold">
           <span className="font-bold text-info">404</span> Page not found

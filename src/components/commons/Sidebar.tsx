@@ -7,7 +7,7 @@ type Props = {
 
 const Sidebar = ({ tabs }: Props) => {
   return (
-    <div className="w-full md:w-1/4 p-4 flex flex-row md:flex-col gap-2 overflow-x-auto">
+    <div className="w-full md:w-1/4 p-2 flex flex-row md:flex-col gap-2 overflow-x-auto">
       {tabs.map((item) => {
         const Icon = item.icon;
         return (

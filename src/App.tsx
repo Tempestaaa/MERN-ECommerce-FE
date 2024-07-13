@@ -16,12 +16,16 @@ import kids_banner from "./assets/Frontend_Assets/banner_kids.png";
 import ProductDetails from "./pages/public/ProductDetails";
 import { useQuery } from "@tanstack/react-query";
 import { authUser } from "./apis/auth.api";
+import AdminRouter from "./components/commons/AdminRouter";
+import PrivateRouter from "./components/commons/PrivateRouter";
+import ProfileLayout from "./layout/ProfileLayout";
+import Profile from "./pages/user/Profile";
+import ChangePassword from "./pages/user/ChangePassword";
 
 const App = () => {
   useQuery({
     queryKey: ["authUser"],
     queryFn: () => authUser(),
-    retry: false,
   });
 
   return (
@@ -44,13 +48,24 @@ const App = () => {
         <Route path="register" element={<Register />} />
         <Route path="cart" element={<Cart />} />
         <Route path="product/:productId" element={<ProductDetails />} />
+
+        <Route element={<PrivateRouter />}>
+          <Route path="profile" element={<ProfileLayout />}>
+            <Route index element={<Profile />} />
+            <Route path="change-password" element={<ChangePassword />} />
+          </Route>
+        </Route>
+
+        <Route element={<AdminRouter />}>
+          <Route path="dashboard" element={<DashboardLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="add-product" element={<AddProduct />} />
+            <Route path="products" element={<ProductList />} />
+          </Route>
+        </Route>
       </Route>
 
-      <Route path="dashboard" element={<DashboardLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="add-product" element={<AddProduct />} />
-        <Route path="products" element={<ProductList />} />
-      </Route>
+      {/* CATCH ALL THOSE INVALID URL */}
       <Route path="*" element={<Missing />} />
     </Routes>
   );
