@@ -2,16 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/commons/Input";
 import usePasswordToggle from "../../hooks/usePasswordToggle";
 import { useForm } from "react-hook-form";
-import { User, UserDataLogin, UserLogin } from "../../types/user.type";
+import { UserDataLogin, UserLogin } from "../../types/user.type";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { loginUser } from "../../apis/auth.api";
 import toast from "react-hot-toast";
 import Loading from "../../components/commons/Loading";
-import { useEffect } from "react";
 
 const Login = () => {
-  const { data } = useQuery<User>({ queryKey: ["authUser"] });
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [PasswordType, PasswordIcon] = usePasswordToggle();
@@ -38,10 +36,6 @@ const Login = () => {
   const onSubmit = async (data: UserLogin) => {
     await loginUserApi(data);
   };
-
-  useEffect(() => {
-    if (data?.username) navigate("/");
-  }, [data]);
 
   return (
     <div className="w-full grid place-items-center bg-gradient-to-b from-pink-200 px-2 h-[calc(100svh-68px)]">
