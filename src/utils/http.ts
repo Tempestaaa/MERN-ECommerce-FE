@@ -1,10 +1,13 @@
 import axios, { AxiosInstance } from "axios";
 
+// const BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+const BASE_URL = "http://localhost:3000" || import.meta.env.VITE_BACKEND_URL;
+
 class Http {
   instance: AxiosInstance;
   constructor() {
     this.instance = axios.create({
-      baseURL: import.meta.env.VITE_BACKEND_URL,
+      baseURL: BASE_URL,
       withCredentials: true,
       timeout: 10 * 1000,
       headers: { "Content-Type": "application/json" },

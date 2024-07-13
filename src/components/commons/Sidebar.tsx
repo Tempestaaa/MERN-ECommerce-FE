@@ -14,7 +14,7 @@ const Sidebar = ({ tabs }: Props) => {
           <Link
             key={item.link}
             to={item.link}
-            className="flex items-center justify-center gap-2 btn"
+            className="flex items-center justify-start gap-2 btn"
           >
             <Icon />
             <span>{item.name}</span>

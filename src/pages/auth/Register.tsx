@@ -2,14 +2,16 @@ import { useForm } from "react-hook-form";
 import usePasswordToggle from "../../hooks/usePasswordToggle";
 import Input from "../../components/commons/Input";
 import { Link, useNavigate } from "react-router-dom";
-import { UserDataRegister, UserRegister } from "../../types/user.type";
+import { User, UserDataRegister, UserRegister } from "../../types/user.type";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { registerUser } from "../../apis/auth.api";
 import toast from "react-hot-toast";
 import Loading from "../../components/commons/Loading";
+import { useEffect } from "react";
 
 const Register = () => {
+  const { data } = useQuery<User>({ queryKey: ["authUser"] });
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [PasswordType, PasswordIcon] = usePasswordToggle();
@@ -35,6 +37,11 @@ const Register = () => {
   const onSubmit = async (data: UserRegister) => {
     await registerUserApi(data);
   };
+
+  useEffect(() => {
+    if (data?.username) navigate("/");
+  }, [data]);
+
   return (
     <div className="w-full grid place-items-center bg-gradient-to-b from-pink-200 px-2 h-[calc(100svh-68px)]">
       <form
