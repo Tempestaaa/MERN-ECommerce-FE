@@ -9,10 +9,6 @@ import Dashboard from "./pages/admin/Dashboard";
 import AddProduct from "./pages/admin/AddProduct";
 import ProductList from "./pages/admin/ProductList";
 import Missing from "./pages/public/Missing";
-import ShopCategory from "./pages/public/ShopCategory";
-import men_banner from "./assets/Frontend_Assets/banner_mens.png";
-import women_banner from "./assets/Frontend_Assets/banner_women.png";
-import kids_banner from "./assets/Frontend_Assets/banner_kids.png";
 import ProductDetails from "./pages/public/ProductDetails";
 import { useQuery } from "@tanstack/react-query";
 import { authUser } from "./apis/auth.api";
@@ -21,29 +17,29 @@ import PrivateRouter from "./components/commons/PrivateRouter";
 import ProfileLayout from "./layout/ProfileLayout";
 import Profile from "./pages/user/Profile";
 import ChangePassword from "./pages/user/ChangePassword";
+import { getAllBrands } from "./apis/brand.api";
+import BrandList from "./pages/admin/BrandList";
+import CategoryList from "./pages/admin/CategoryList";
+import { getAllCategories } from "./apis/category.api";
 
 const App = () => {
   useQuery({
     queryKey: ["authUser"],
     queryFn: () => authUser(),
   });
+  useQuery({
+    queryKey: ["brandList"],
+    queryFn: () => getAllBrands(),
+  });
+  useQuery({
+    queryKey: ["categoryList"],
+    queryFn: () => getAllCategories(),
+  });
 
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route
-          path="men"
-          element={<ShopCategory category="men" banner={men_banner} />}
-        />
-        <Route
-          path="women"
-          element={<ShopCategory category="women" banner={women_banner} />}
-        />
-        <Route
-          path="kids"
-          element={<ShopCategory category="kids" banner={kids_banner} />}
-        />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="cart" element={<Cart />} />
@@ -61,6 +57,8 @@ const App = () => {
             <Route index element={<Dashboard />} />
             <Route path="add-product" element={<AddProduct />} />
             <Route path="products" element={<ProductList />} />
+            <Route path="brands" element={<BrandList />} />
+            <Route path="categories" element={<CategoryList />} />
           </Route>
         </Route>
       </Route>

@@ -1,14 +1,9 @@
-import { useContext } from "react";
-import { ShopContext } from "../../context/ShopContext";
-import { X } from "lucide-react";
 import Input from "../commons/Input";
 
 const CartItems = () => {
-  const shopContext = useContext(ShopContext);
-
   return (
     <div className="w-full px-2 h-[calc(100svh-68px)] container mx-auto flex gap-4">
-      <table className="table shadow-md h-fit">
+      {/* <table className="table shadow-md h-fit">
         <thead className="bg-neutral text-neutral-content">
           <tr className="text-center">
             <th>Products</th>
@@ -55,7 +50,7 @@ const CartItems = () => {
             return null;
           })}
         </tbody>
-      </table>
+      </table> */}
 
       <div className="w-1/3 flex flex-col gap-2">
         <div className="flex flex-col gap-1">
@@ -63,7 +58,7 @@ const CartItems = () => {
           <div>
             <div className="flex flex-col gap-2">
               <p>Subtotal</p>
-              <p>${shopContext?.getTotalCartAmount()}</p>
+              <p>$0</p>
             </div>
             <hr />
             <div className="flex flex-col gap-2">
@@ -73,7 +68,7 @@ const CartItems = () => {
             <hr />
             <div className="flex flex-col gap-2">
               <h3>Total</h3>
-              <h3>${shopContext?.getTotalCartAmount()}</h3>
+              <h3>$0</h3>
             </div>
           </div>
           <button className="btn btn-error text-white mt-4">

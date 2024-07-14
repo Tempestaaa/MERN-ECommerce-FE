@@ -5,7 +5,6 @@ import { ProductAdd, ProductDataAdd } from "../../types/product.type";
 import Prices from "../../components/admin/forms/Prices";
 import CategorySelect from "../../components/admin/forms/CategorySelect";
 import Images from "../../components/admin/forms/Images";
-import convertToBase64 from "../../utils/convertBase64";
 
 const AddProduct = () => {
   const formMethods = useForm<ProductAdd>({
@@ -17,9 +16,7 @@ const AddProduct = () => {
     formState: { errors },
   } = formMethods;
   const onSubmit = async (data: ProductAdd) => {
-    const b64 = await convertToBase64(data.image[0] as File);
-    const productData = { ...data, image: b64 };
-    console.log(productData);
+    console.log(data);
   };
 
   return (

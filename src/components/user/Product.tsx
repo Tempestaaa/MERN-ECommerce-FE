@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { ProductFE } from "../../types/product.type";
+import { Product as tProduct } from "../../types/product.type";
 
 type Props = {
-  item: Omit<ProductFE, "category">;
+  item: Omit<tProduct, "category">;
 };
 
 const Product = ({ item }: Props) => {
@@ -12,7 +12,7 @@ const Product = ({ item }: Props) => {
       onClick={() => window.scrollTo(0, 0)}
       className="max-w-[350px] hover:scale-105 duration-75"
     >
-      <img src={item.image as string} alt="Product Image" />
+      {/* <img src={item.image as string} alt="Product Image" /> */}
       <p className="py-2">{item.name}</p>
       <div className="flex gap-5 text-lg">
         <div className="font-semibold">${item.newPrice}</div>

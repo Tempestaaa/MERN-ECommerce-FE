@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { ProductFE } from "../../types/product.type";
+import { Product } from "../../types/product.type";
 
 type Props = {
-  product: ProductFE | undefined;
+  product: Product;
 };
 
 const Breadcrumbs = ({ product }: Props) => {

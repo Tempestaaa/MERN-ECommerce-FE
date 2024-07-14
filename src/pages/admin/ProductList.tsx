@@ -1,12 +1,7 @@
-import { useContext } from "react";
-import { ShopContext } from "../../context/ShopContext";
-import { X } from "lucide-react";
-
 const ProductList = () => {
-  const shopContext = useContext(ShopContext);
   return (
     <div className="overflow-x-auto h-full max-w-max">
-      <table className="table">
+      {/* <table className="table">
         <thead className="bg-neutral text-neutral-content">
           <tr>
             <th>Product</th>
@@ -38,7 +33,7 @@ const ProductList = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 };

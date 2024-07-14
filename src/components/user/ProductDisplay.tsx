@@ -1,21 +1,17 @@
 import { ShoppingCart, Star } from "lucide-react";
-import { ProductFE } from "../../types/product.type";
-import { useContext } from "react";
-import { ShopContext } from "../../context/ShopContext";
+import { Product } from "../../types/product.type";
 
 type Props = {
-  product: ProductFE | undefined;
+  product: Product | undefined;
 };
 
 const sizes = ["S", "M", "L", "X", "XL", "XXL"];
 
 function ProductDisplay({ product }: Props) {
-  const shopContext = useContext(ShopContext);
-
   return (
     <div className="flex gap-8">
       {/* LEFT */}
-      <div className="flex gap-4">
+      {/* <div className="flex gap-4">
         <div className="flex flex-col gap-4">
           <img
             src={product?.image as string}
@@ -45,7 +41,7 @@ function ProductDisplay({ product }: Props) {
             className="w-[500px] h-[624px]"
           />
         </div>
-      </div>
+      </div> */}
 
       {/* RIGHT */}
       <div className="flex-1 flex flex-col gap-8">
@@ -92,10 +88,7 @@ function ProductDisplay({ product }: Props) {
           </div>
         </div>
 
-        <button
-          onClick={() => shopContext?.addToCart(Number(product?._id))}
-          className="btn btn-error text-white self-start px-16"
-        >
+        <button className="btn btn-error text-white self-start px-16">
           <ShoppingCart />
           <span className="capitalize">Add to cart</span>
         </button>

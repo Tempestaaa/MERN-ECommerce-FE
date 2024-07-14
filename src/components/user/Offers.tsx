@@ -1,5 +1,3 @@
-import exclusive_image from "../../assets/Frontend_Assets/exclusive_image.png";
-
 const Offers = () => {
   return (
     <div className="h-[60svh] container mx-auto px-36 py-12 flex bg-gradient-to-b from-purple-200">
@@ -14,7 +12,7 @@ const Offers = () => {
       </div>
       {/* RIGHT */}
       <div className="flex-1 flex items-center justify-end pt-12">
-        <img src={exclusive_image} alt="Exclusive Image" className="h-full" />
+        {/* <img src={exclusive_image} alt="Exclusive Image" className="h-full" /> */}
       </div>
     </div>
   );

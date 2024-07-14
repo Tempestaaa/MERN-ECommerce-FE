@@ -9,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, type = "text", className, error, ...rest }, ref) => {
+  ({ label = "", type = "text", className, error, ...rest }, ref) => {
     return (
       <label className="form-control w-full flex-1">
         <span className="label label-text">{label}</span>
