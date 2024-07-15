@@ -16,7 +16,7 @@ const Profile = () => {
 
     // Multi upload
     Array.from(data.img).forEach((item) => {
-      formData.append("img", item);
+      formData.append("images", item);
     });
     formData.append("name", data.name);
 

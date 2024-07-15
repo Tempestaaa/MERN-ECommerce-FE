@@ -28,7 +28,7 @@ const tabs: SidebarType[] = [
 
 const DashboardLayout = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-6 flex-1 container mx-auto mt-1">
+    <div className="flex flex-col md:flex-row flex-1 container mx-auto mt-1">
       <Sidebar tabs={tabs} />
       <div className="flex-1">
         <Outlet />

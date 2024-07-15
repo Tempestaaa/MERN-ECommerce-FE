@@ -21,6 +21,7 @@ import { getAllBrands } from "./apis/brand.api";
 import BrandList from "./pages/admin/BrandList";
 import CategoryList from "./pages/admin/CategoryList";
 import { getAllCategories } from "./apis/category.api";
+import { getAllProducts } from "./apis/product.api";
 
 const App = () => {
   useQuery({
@@ -34,6 +35,10 @@ const App = () => {
   useQuery({
     queryKey: ["categoryList"],
     queryFn: () => getAllCategories(),
+  });
+  useQuery({
+    queryKey: ["productList"],
+    queryFn: () => getAllProducts(),
   });
 
   return (

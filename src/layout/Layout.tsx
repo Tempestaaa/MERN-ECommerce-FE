@@ -20,7 +20,7 @@ const Layout = () => {
           <Outlet />
         )}
       </div>
-      <Footer />
+      {/* <Footer /> */}
 
       {/* Toast */}
       <div>

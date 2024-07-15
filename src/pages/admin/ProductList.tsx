@@ -1,4 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
+import { ProductBackEnd } from "../../types/product.type";
+
 const ProductList = () => {
+  const { data: products } = useQuery<ProductBackEnd>({
+    queryKey: ["productList"],
+  });
   return (
     <div className="overflow-x-auto h-full max-w-max">
       {/* <table className="table">
@@ -34,6 +40,11 @@ const ProductList = () => {
           ))}
         </tbody>
       </table> */}
+      {products?.products.map((item) => (
+        <div className="" key={item._id}>
+          {item.name}
+        </div>
+      ))}
     </div>
   );
 };

@@ -1,10 +1,13 @@
 import { forwardRef, InputHTMLAttributes } from "react";
-import { FieldError } from "react-hook-form";
+import { FieldError, Merge } from "react-hook-form";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   type?: string;
-  error?: FieldError | undefined;
+  error?:
+    | FieldError
+    | undefined
+    | Merge<FieldError, (FieldError | undefined)[]>;
   className?: string;
 }
 
